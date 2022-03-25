@@ -1,25 +1,33 @@
-import logo from "./logo.svg";
+import React from "react";
 import "./App.css";
+import allCountryScores from "./Scores.js";
+import ProduceScores from "./ProduceScores.js";
 
-function App() {
+// Sort the Country Names
+function countryNameSort(a,b) {
+  if (a.name < b.name)
+      return -1;
+
+  else if (a.name > b.name)
+      return 1;
+  else
+      return 0;
+}
+
+const App = () => {
+
+   // Sort the Country Names in alphabetical order - Note that the array is sorted in place
+   allCountryScores.sort(countryNameSort);
+   
+  // render the result 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="flex-centre"> 
+	    <div className="flexchild">
+          <h1 class="title">High Scores per Country</h1>
+          <ProduceScores theScores={allCountryScores} />
+      </div>
     </div>
   );
-}
+};
 
 export default App;
