@@ -60,7 +60,7 @@ p {
   display: flex;
   align-items: baseline;
   gap: 6rem;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .rightblack {
