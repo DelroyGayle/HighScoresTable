@@ -23,7 +23,7 @@ const App = () => {
   return (
     <div className="flex-centre"> 
 	    <div className="flexchild">
-          <h1 class="title">High Scores per Country</h1>
+          <h1 className="title">High Scores per Country</h1>
           <ProduceScores theScores={allCountryScores} />
       </div>
     </div>
