@@ -29,7 +29,6 @@ function renderTheScores(scorers) {
   return (
     <div className="thescores">
       <div className="row-flex2">
-        <div></div>
         {renderEachName(scorers)}
         {renderEachScore(scorers)}
       </div>
