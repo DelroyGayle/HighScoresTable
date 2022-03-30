@@ -22,7 +22,9 @@ const ProduceScores = (props) => {
 
 // The Country Heading
 function countryName(eachCountry) {
-  return <h2 className="bluepen">{`HIGH SCORES: ${eachCountry.name}`}</h2>;
+  return (
+    <h2 className="font-link bluepen">{`HIGH SCORES: ${eachCountry.name}`}</h2>
+  );
 }
 
 function renderTheScores(scorers) {
@@ -39,7 +41,7 @@ function renderTheScores(scorers) {
 function renderEachName(scorers) {
   // Produce a list of Names
   const listNames = scorers.map((element, index) => (
-    <p key={index} className="rightblack">
+    <p key={index} className="font-link rightblack">
       {element.n}
     </p>
   ));
@@ -51,7 +53,7 @@ function renderEachName(scorers) {
 function renderEachScore(scorers) {
   // Produce a list of Scores
   const listScores = scorers.map((element, index) => (
-    <p key={index} className="rightbrown">
+    <p key={index} className="font-link rightbrown">
       {element.s}
     </p>
   ));
