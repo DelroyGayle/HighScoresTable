@@ -1,14 +1,29 @@
 import React from "react";
+import { useState } from "react";
 
 // Note that the array is sorted in place
-function sortByScores(a, b) {
+function sortByScoresDesc(a, b) {
   return b.s - a.s;
 }
 
 const ProduceScores = (props) => {
+  const [sortOrder, setSortOrder] = useState(0);
+
   const listCountries = props.theScores.map((eachCountry, index) => {
     const copiedScores = [...eachCountry.scores]; // make a copy of the scores for each country
-    copiedScores.sort(sortByScores); // sort in descending order
+    copiedScores.sort(sortByScoresDesc); // sort in descending order
+
+    if (!sortOrder) {
+                      setSortOrder([...copiedScores]);
+                      DescendingOrder = [...copiedScores];
+                      console.log(DescendingOrder);
+                      copiedScores.sort(sortByScoresAscend); // sort in ascending order
+                      AscendingOrder = [...copiedScores];
+                      console.log(AscendingOrder);
+    }
+
+
+
     // render the result
     return (
       <div key={index} className="country">
@@ -22,9 +37,7 @@ const ProduceScores = (props) => {
 
 // The Country Heading
 function countryName(eachCountry) {
-  return (
-    <h2 className="font-link bluepen">{`HIGH SCORES: ${eachCountry.name}`}</h2>
-  );
+  return <h2 className="bluepen">{`HIGH SCORES: ${eachCountry.name}`}</h2>;
 }
 
 function renderTheScores(scorers) {
@@ -41,7 +54,7 @@ function renderTheScores(scorers) {
 function renderEachName(scorers) {
   // Produce a list of Names
   const listNames = scorers.map((element, index) => (
-    <p key={index} className="font-link rightblack">
+    <p key={index} className="rightblack">
       {element.n}
     </p>
   ));
@@ -53,7 +66,7 @@ function renderEachName(scorers) {
 function renderEachScore(scorers) {
   // Produce a list of Scores
   const listScores = scorers.map((element, index) => (
-    <p key={index} className="font-link rightbrown">
+    <p key={index} className="rightbrown">
       {element.s}
     </p>
   ));
