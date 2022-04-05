@@ -1,12 +1,19 @@
+/*
+This font does not work in Netlify
+
 @import url("http://fonts.cdnfonts.com/css/arcade-classic");
+
+body {
+  font-family: "ArcadeClassic", sans-serif;
+}
+
+*/
 
 :root {
   --lightskyblue: #87cefa;
   --greenyellow: #adfd30;
-}
-
-body {
-  font-family: "ArcadeClassic", sans-serif;
+  --white: #ffffff;
+  --pink: #ea4c89;
 }
 
 h1 {
@@ -20,6 +27,39 @@ h2 {
 p {
   font-size: 1.25rem; /* 20px */
   text-transform: uppercase;
+}
+
+.button {
+  background-color: var(--pink);
+  border-style: none;
+  box-sizing: border-box;
+  border-radius: 0.5rem;
+  color: white;
+  padding: 0.938rem 2rem; /* 15px 32px; */
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 1.5rem; /* 24px; */
+  margin: 0.25rem 0.125rem; /* 4px 2px; */
+  cursor: pointer;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+}
+
+.child {
+  /* Centre horizontally*/
+  margin: 0 auto;
+}
+
+.descending-button::before {
+  content: "Descending ";
+}
+
+.ascending-button::before {
+  content: "Ascending ";
 }
 
 .flex-centre {

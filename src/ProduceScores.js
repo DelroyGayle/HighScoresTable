@@ -1,34 +1,16 @@
 import React from "react";
-import { useState } from "react";
-
-// Note that the array is sorted in place
-function sortByScoresDesc(a, b) {
-  return b.s - a.s;
-}
 
 const ProduceScores = (props) => {
-  const [sortOrder, setSortOrder] = useState(0);
-
-  const listCountries = props.theScores.map((eachCountry, index) => {
-    const copiedScores = [...eachCountry.scores]; // make a copy of the scores for each country
-    copiedScores.sort(sortByScoresDesc); // sort in descending order
-
-    if (!sortOrder) {
-                      setSortOrder([...copiedScores]);
-                      DescendingOrder = [...copiedScores];
-                      console.log(DescendingOrder);
-                      copiedScores.sort(sortByScoresAscend); // sort in ascending order
-                      AscendingOrder = [...copiedScores];
-                      console.log(AscendingOrder);
-    }
-
-
-
+  // let sortType = props.JSKsortType;
+  const listCountries = props.listOfCountries.map((eachCountry, index) => {
     // render the result
+    console.log(props.listOfCountries);
+    console.log(eachCountry);
+    console.log(eachCountry.countryName);
     return (
       <div key={index} className="country">
-        {countryName(eachCountry)}
-        {renderTheScores(copiedScores)}
+        {countryName(eachCountry.countryName)}
+        {renderTheScores(eachCountry.scores)}
       </div>
     );
   });
@@ -36,11 +18,15 @@ const ProduceScores = (props) => {
 };
 
 // The Country Heading
-function countryName(eachCountry) {
-  return <h2 className="bluepen">{`HIGH SCORES: ${eachCountry.name}`}</h2>;
+function countryName(theCountryName) {
+  console.log(theCountryName);
+  return (
+    <h2 className="font-link bluepen">{`HIGH SCORES: ${theCountryName}`}</h2>
+  );
 }
 
 function renderTheScores(scorers) {
+  console.log(scorers);
   return (
     <div className="thescores">
       <div className="row-flex2">
@@ -54,8 +40,8 @@ function renderTheScores(scorers) {
 function renderEachName(scorers) {
   // Produce a list of Names
   const listNames = scorers.map((element, index) => (
-    <p key={index} className="rightblack">
-      {element.n}
+    <p key={index} className="font-link rightblack">
+      {element.scorerName}
     </p>
   ));
 
@@ -66,8 +52,8 @@ function renderEachName(scorers) {
 function renderEachScore(scorers) {
   // Produce a list of Scores
   const listScores = scorers.map((element, index) => (
-    <p key={index} className="rightbrown">
-      {element.s}
+    <p key={index} className="font-link rightbrown">
+      {element.scorerScore}
     </p>
   ));
 
