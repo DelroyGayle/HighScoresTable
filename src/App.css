@@ -1,8 +1,13 @@
+/*
+This font does not work in Netlify
+
 @import url("http://fonts.cdnfonts.com/css/arcade-classic");
 
 body {
   font-family: "ArcadeClassic", sans-serif;
 }
+
+*/
 
 :root {
   --lightskyblue: #87cefa;
