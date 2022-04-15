@@ -6,7 +6,8 @@ import ProduceScores from "./ProduceScores.js";
 import SortButton from "./SortButton";
 
 const descendingOrder = [],
-  ascendingOrder = [];
+  ascendingOrder = [],
+  worldTable = [];
 
 let sortType = -1;
 
@@ -22,7 +23,13 @@ allCountryScores.forEach((eachCountry) => {
     let element = eachCountry.scores[eachObject];
 
     // Perform Descending Order First - convert any strings into numbers
-    descList.push({ scorerName: element.n, scorerScore: Number(element.s) });
+    let theScore = Number(element.s);
+    descList.push({ scorerName: element.n, scorerScore: theScore });
+    worldTable.push({
+      score: theScore,
+      country: eachCountry.name,
+      name: element.n.toUpperCase(),
+    });
   }
   descList.sort(sortByScoresDesc); // sort in descending order
   ascList = [...descList].reverse(); // By 'reverse' we have the sort in ascending order
@@ -33,6 +40,9 @@ allCountryScores.forEach((eachCountry) => {
   });
   ascendingOrder.push({ countryName: eachCountry.name, scores: [...ascList] });
 });
+
+// Sort the "world-wide" table in descending score order - Note that the array is sorted in place
+worldTable.sort(worldWideSort).reverse();
 
 // Sort the Country Names
 function countryNameSort(a, b) {
@@ -50,14 +60,44 @@ function sortByScoresDesc(a, b) {
   return b.scorerScore - a.scorerScore;
 }
 
+// Sort the "world-wide" table
+function worldWideSort(z, a) {
+  if (z.score !== a.score) {
+    return z.score - a.score;
+  }
+
+  if (z.country !== a.country) {
+    if (z.country < a.country) {
+      // done intentionally so that when I reverse the countries are in the right order
+      return 1;
+    } else {
+      return -1;
+    }
+  }
+
+  if (z.name < a.name) {
+    return -1;
+  } else if (z.name > a.name) {
+    return 1;
+  } else {
+    return 0;
+  }
+}
+
 const App = () => {
   const listOfCountries = sortType < 0 ? descendingOrder : ascendingOrder;
 
   const [sortOrder, setSortOrder] = useState(-1);
 
+  const [worldwideDisplay, setWorldwideDisplay] = useState(true); // Worldwide Table view first
+
   function switchOrder() {
     setSortOrder(-sortOrder);
     sortType = -sortType;
+  }
+
+  function switchToHighScores() {
+    setWorldwideDisplay(false);
   }
 
   // One class for 'descending', the other for 'ascending'
@@ -66,28 +106,62 @@ const App = () => {
   }-button`;
 
   // render the result
-  return (
-    <div>
-      <div className="container">
-        <div className="child">
-          {/* EG <button className="button descending-button" onClick={switchOrder}> */}
-          <button className={buttonClass} onClick={switchOrder}>
-            Order
-          </button>
-          <hr></hr>
+
+  if (worldwideDisplay) {
+    return (
+      <div className="flex-centre ">
+        <h1 className="redheading">WORLDWIDE TABLE</h1>
+        <div className="wwbox">
+          <div className="redfont">COUNTRY</div>
+          <div className="redfont">NAME</div>
+          <div className="redfont">SCORE</div>
+          {displayScores()}
+          <div>&nbsp;</div>
+          <div>&nbsp;</div>
+          <div>
+            <button className="button" onClick={switchToHighScores}>
+              Proceed to High Scores per Country
+            </button>
+          </div>
         </div>
       </div>
-
-      <div className="flex-centre">
-        <div className="flexchild">
-          <h1 className="title">High Scores per Country</h1>
-
-          <ProduceScores listOfCountries={listOfCountries} />
+    );
+  } else {
+    return (
+      <div>
+        <div className="container">
+          <div className="child">
+            {/* EG <button className="button descending-button" onClick={switchOrder}> */}
+            <button className={buttonClass} onClick={switchOrder}>
+              Order
+            </button>
+            <hr></hr>
+          </div>
         </div>
+
+        <div className="flex-centre">
+          <div className="flexchild">
+            <h1 className="title">High Scores per Country</h1>
+
+            <ProduceScores listOfCountries={listOfCountries} />
+          </div>
+        </div>
+        <SortButton buttonClass={buttonClass} switchOrder={switchOrder} />
       </div>
-      <SortButton buttonClass={buttonClass} switchOrder={switchOrder} />
-    </div>
-  );
+    );
+  }
 };
+
+function displayScores() {
+  // Convert to a linear list
+  const linearList = [];
+  worldTable.forEach((element) => {
+    linearList.push(<div className="bluefont">{element.country}</div>);
+    linearList.push(<div className="blackfont">{element.name}</div>);
+    linearList.push(<div className="brownfont">{element.score}</div>);
+  });
+
+  return linearList;
+}
 
 export default App;

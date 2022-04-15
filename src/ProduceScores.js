@@ -3,10 +3,8 @@ import React from "react";
 const ProduceScores = (props) => {
   // let sortType = props.JSKsortType;
   const listCountries = props.listOfCountries.map((eachCountry, index) => {
+
     // render the result
-    console.log(props.listOfCountries);
-    console.log(eachCountry);
-    console.log(eachCountry.countryName);
     return (
       <div key={index} className="country">
         {countryName(eachCountry.countryName)}
@@ -19,14 +17,14 @@ const ProduceScores = (props) => {
 
 // The Country Heading
 function countryName(theCountryName) {
-  console.log(theCountryName);
+
   return (
-    <h2 className="font-link bluepen">{`HIGH SCORES: ${theCountryName}`}</h2>
+    <h2 className="bluepen">{`HIGH SCORES: ${theCountryName}`}</h2>
   );
 }
 
 function renderTheScores(scorers) {
-  console.log(scorers);
+
   return (
     <div className="thescores">
       <div className="row-flex2">
@@ -40,7 +38,7 @@ function renderTheScores(scorers) {
 function renderEachName(scorers) {
   // Produce a list of Names
   const listNames = scorers.map((element, index) => (
-    <p key={index} className="font-link rightblack">
+    <p key={index} className="leftblack">
       {element.scorerName}
     </p>
   ));
@@ -52,7 +50,7 @@ function renderEachName(scorers) {
 function renderEachScore(scorers) {
   // Produce a list of Scores
   const listScores = scorers.map((element, index) => (
-    <p key={index} className="font-link rightbrown">
+    <p key={index} className="rightbrown">
       {element.scorerScore}
     </p>
   ));

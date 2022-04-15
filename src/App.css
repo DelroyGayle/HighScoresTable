@@ -104,7 +104,7 @@ p {
   justify-content: flex-end;
 }
 
-.rightblack {
+.leftblack {
   font-weight: 900;
   font-size: 1.5rem; /* 24px */
   color: black;
@@ -126,4 +126,49 @@ p {
   display: flex;
   justify-content: space-between;
   margin: 3em;
+}
+
+.wwbox {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 1rem;
+}
+
+.wwbox > * {
+  flex: 1 1 33%;
+}
+
+.blackfont {
+  font-weight: 900;
+  font-size: 1.5rem; /* 24px */
+  color: black;
+  text-align: left;
+  margin: 0em;
+}
+
+.brownfont {
+  font-weight: 900;
+  font-size: 1.5rem; /* 24px */
+  color: brown;
+  text-align: left;
+  margin: 0em;
+}
+
+.bluefont {
+  font-weight: 900;
+  font-size: 1.5rem; /* 24px */
+  color: var(--lightskyblue);
+  text-align: left;
+}
+
+.redfont {
+  font-weight: 900;
+  font-size: 1.5rem; /* 24px */
+  color: red;
+  text-align: left;
+  margin-bottom: 2rem;
+}
+
+.redheading {
+  color: red;
 }
